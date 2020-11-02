@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -14,6 +15,22 @@ class App extends Component {
       {type: 'white', startcount: 12},
     ],
   };
+
+  componentDidMount() {
+    console.log('component has mounted');
+    this.getCount();
+  }
+
+  getCount() {
+    axios.get('/count')
+      .then( (response) => {
+        this.setState({ countList: response.data })
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   handleChangeFor = (event, propertyName) => {
     console.log(event.target.value);
@@ -44,8 +61,8 @@ class App extends Component {
         <p>The new start count is {this.state.newCount.startcount} and the rows will be of type: {this.state.newCount.type}</p>
 
         <form onSubmit={this.handleSubmit}>
-          <input value={this.state.newCount.type} onChange={(event) => this.handleChangeFor(event, 'type')} />
-          <input value={this.state.newCount.startcount} onChange={(event) => this.handleChangeFor(event, 'startcount')} />
+          <input value={this.state.newCount.type} onChange={(event) => this.handleChangeFor(event, 'type')} placeholder="Type of stitch to track" />
+          <input value={this.state.newCount.startcount} onChange={(event) => this.handleChangeFor(event, 'startcount')} placeholder="Rows or stitches to track" />
           <input type="submit" value="Add New Count" />
         </form>
         <ul>
