@@ -1,13 +1,26 @@
 import './App.css';
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './components/Header/Header';
 
-class App extends React.Component {
+class App extends Component {
+  state = {
+    user: ''
+  }
+
+  handleChange = (event) => {
+    console.log(event.target.value);
+    this.setState({user: event.target.value});
+  }
   render() { 
     return (
       <div className="App">
-       <Header/>
-        <input onChange={this.onInputChange} />
+      <Header />
+        <br/>
+        <h2>React Local State</h2>
+        <br/>
+        <input onChange={this.handleChange} />
+        You typed: {this.state.user}
+        
       </div>
     );
   }
