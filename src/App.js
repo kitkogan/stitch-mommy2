@@ -9,11 +9,7 @@ class App extends Component {
       type: '',
       startcount: '',
     },
-    countList: [
-      {type: 'blue', startcount: 20},
-      {type: 'double', startcount: 50},
-      {type: 'white', startcount: 12},
-    ],
+    countList: [],
   };
 
   componentDidMount() {
@@ -31,6 +27,17 @@ class App extends Component {
         console.log(error);
       });
   }
+
+  addCount() {
+    axios.post(`/count`, this.state.newCount)
+    .then( (response) => {
+      console.log(response);
+      this.getCount();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+   }
 
   handleChangeFor = (event, propertyName) => {
     console.log(event.target.value);
@@ -52,6 +59,7 @@ class App extends Component {
       },
       countList: [...this.state.countList, this.state.newCount],
     });
+    this.addCount();
   }
 
   render() { 
