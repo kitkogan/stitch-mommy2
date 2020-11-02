@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 class App extends Component {
   state = {
@@ -39,6 +40,38 @@ class App extends Component {
     });
    }
 
+  handleDeleteClick = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteCount(id);
+        Swal.fire(
+          'Deleted!',
+          'Your count has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
+  deleteCount(id) {
+   axios.delete(`/count/${id}`)
+   .then( (response) => {
+     console.log(response);
+     this.getCount();
+   })
+   .catch(function (error) {
+     console.log(error);
+  });
+}  
+
   handleChangeFor = (event, propertyName) => {
     console.log(event.target.value);
     this.setState({
@@ -75,8 +108,8 @@ class App extends Component {
         </form>
         <ul>
           { this.state.countList.map( count => 
-            <li ley={count.type}>
-              I need to stitch {count.startcount} rows of {count.type}.
+            <li key={count.id}>
+              I need to stitch {count.startcount} rows of {count.type}. <button onClick={() => {this.handleDeleteClick(count.id)}}>DELETE COUNT</button>
             </li>
           )}
         </ul>
