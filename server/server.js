@@ -11,6 +11,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/count', countRouter);
+// app.use('/count/decrement', countRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT,  () => {

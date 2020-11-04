@@ -49,5 +49,22 @@ router.delete('/:id', (req, res) => {
     })
 })    
 
+// PUT Route
+router.put('/:id', (req, res) => {
+    console.log(req.params);
+    const reqId = req.params.id;
+    console.log('decrement server side:', reqId);
+    let sqlText = `UPDATE "newstitch" SET startcount=startcount-1 WHERE "id" = $1 AND startcount > 0;`;    
+    pool.query(sqlText, [reqId])
+    .then((result) => {
+        console.log('Count decremented');
+        res.sendStatus(200);
+})
+.catch((error ) => {
+    console.log(`Error making database query ${sqlText}`, error);
+    res.sendStatus(500);
+})
+}); // END PUT Route
+
 
 module.exports = router;
