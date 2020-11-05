@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Form from '../Form/Form'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 
 class App extends Component {
   state = {
@@ -122,10 +123,12 @@ class App extends Component {
             <button onClick={() => {this.handleDeleteClick(count.id)}}>DELETE COUNT</button>
           </div>
         )}
-        
+          <div>
+          <button onClick={() => this.props.dispatch({ type: 'BUTTON_1' })}>Button One</button>
+          <button onClick={() => this.props.dispatch({ type: 'BUTTON_2' })}>Button Two</button>          </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect()(App);
