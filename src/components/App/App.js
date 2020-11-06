@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import Form from '../Form/Form'
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { connect } from 'react-redux';
 
 class App extends Component {
   state = {
@@ -115,20 +114,24 @@ class App extends Component {
         <Form newCount={this.state.newCount}
           handleChangeFor={this.handleChangeFor}
           handleSubmit={this.handleSubmit} />
-        { this.state.countList.map( count => 
-          <div className="stitchContainer" key={count.id}>
-            Stitch Type: {count.type} 
-            Number remaining: {count.startcount} 
-            <button onClick={() => {this.decrementCount(count.id)}}>CLICK TO TRACK COUNT</button>
-            <button onClick={() => {this.handleDeleteClick(count.id)}}>DELETE COUNT</button>
+        { this.state.countList.map( count =>
+          <div className="card" key={count.id}>
+            <div className="textContainer"> 
+                Stitch Type: {count.type} 
+                Number remaining: {count.startcount}
+              <div className="buttonContainer">
+                <button onClick={() => {this.decrementCount(count.id)}}>CLICK TO TRACK COUNT</button>
+                <button onClick={() => {this.handleDeleteClick(count.id)}}>DELETE COUNT</button>
+              </div>
+            </div>
           </div>
+
+          
         )}
-          <div>
-          <button onClick={() => this.props.dispatch({ type: 'BUTTON_1' })}>Button One</button>
-          <button onClick={() => this.props.dispatch({ type: 'BUTTON_2' })}>Button Two</button>          </div>
+        
       </div>
     );
   }
 }
 
-export default connect()(App);
+export default App;

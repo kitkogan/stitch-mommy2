@@ -3,37 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-
-
-const firstReducer = (state={}, action) => {
-  if(action.type === 'BUTTON_1') {
-    console.log('btton 1 clicked');
-  }
-  return state;
-};
-
-const secondReducer = (state={}, action) => {
-  if(action.type === 'BUTTON_2') {
-    console.log('btton 2 clicked');
-  }
-  return state;
-};
-
-const storeInstance = createStore(
-  combineReducers({
-    firstReducer,
-    secondReducer
-  }),    
-);
 
 ReactDOM.render(
-  <Provider store={storeInstance}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-  </Provider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
