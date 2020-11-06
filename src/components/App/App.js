@@ -116,9 +116,13 @@ class App extends Component {
           handleSubmit={this.handleSubmit} />
         { this.state.countList.map( count =>
           <div className="card" key={count.id}>
-            <div className="textContainer"> 
-                Stitch Type: {count.type} 
-                Number remaining: {count.startcount}
+            <div className="textContainer">
+              <div className="outputContainer">
+              Stitch Type: {count.type}
+              <br/> 
+              Number remaining: {count.startcount}
+              </div> 
+                
               <div className="buttonContainer">
                 <button onClick={() => {this.decrementCount(count.id)}}>CLICK TO TRACK COUNT</button>
                 <button onClick={() => {this.handleDeleteClick(count.id)}}>DELETE COUNT</button>
