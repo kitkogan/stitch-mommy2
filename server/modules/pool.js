@@ -1,3 +1,13 @@
+/**
+* You'll need to use environment variables in order to deploy your
+* pg-pool configuration to Heroku.
+* It will look something like this:
+**/
+/* the only line you likely need to change is
+ database: 'prime_app',
+ change `prime_app` to the name of your database, and you should be all set!
+*/
+
 const pg = require('pg');
 const url = require('url');
 
@@ -15,7 +25,7 @@ if (process.env.DATABASE_URL) {
     host: params.hostname,
     port: params.port,
     database: params.pathname.split('/')[1],
-    ssl: true, // heroku requires ssl to be true
+    ssl: false, // heroku requires ssl to be true
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
