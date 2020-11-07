@@ -6,7 +6,8 @@ class Header extends Component {
         <div>
           <header className="App-header">
             <h1>
-            STITCH MOMMY 
+            StitchMommy 
+            
             </h1>
           </header>
         </div>
