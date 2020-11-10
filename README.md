@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+# StitchMommy
+
+A lightweight React App created to help needle crafters mind their stitches!
+
+Form takes in the type of stitch to track and the number of rows or stitches. Click a button after each rep to count down to zero!
+
+Track as many stitches as you want! Delete function allows user to delete a counter and start over. 
+
+## Tech Used
+
+- React
+- Express
+- Node
+- SQL
+- Postico
+- Postgres
+- CSS
+- pg
+- SweetAlerts2
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
