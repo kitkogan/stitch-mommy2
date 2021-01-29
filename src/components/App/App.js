@@ -12,6 +12,7 @@ class App extends Component {
       startcount: '',
     },
     countList: [],
+    resetStartCount: ''
   };
 
   componentDidMount() {
@@ -85,12 +86,13 @@ class App extends Component {
 }
 
   handleChangeFor = (event, propertyName) => {
-    console.log(event.target.value);
+    console.log(event.target.value, this.state.resetStartCount);
     this.setState({
       newCount: {
         ...this.state.newCount,
         [propertyName]: event.target.value,
-      }
+      },
+      resetStartCount: this.state.newCount.startcount
     });
   }
 
@@ -105,6 +107,12 @@ class App extends Component {
       countList: [...this.state.countList, this.state.newCount],
     });
     this.addCount();
+  }
+  
+  resetCount(id) {
+    this.setState({
+      
+    })
   }
 
   render() { 

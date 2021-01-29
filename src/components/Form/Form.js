@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Form extends Component {
     render() {
       return (
-        <div>
+        <div className='form'>
             <h2>Enter the stitch type and number of repetitions you would like StitchMommy to mind for you</h2>
 
             <form onSubmit={this.props.handleSubmit}>
